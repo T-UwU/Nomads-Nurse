@@ -1,0 +1,222 @@
+/* Nomad's Quick Revive - External CSS Styles */
+/* Version 1.2.8 */
+/* Author: LilyWaterbug [2608747] */
+
+/* Profile Button Styles */
+.profile-button-revive {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.profile-button-revive svg {
+    width: 36px !important;
+    height: 36px !important;
+    margin: 5px !important;
+    stroke: #d4d4d4 !important;
+    stroke-width: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.profile-button-revive:hover svg {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.profile-button-revive:active svg {
+    transform: scale(0.95);
+}
+
+/* Dark mode styles for profile button */
+body.dark-mode .profile-button-revive svg,
+.dark-mode .profile-button-revive svg {
+    fill: url(#linear-gradient-dark-mode) !important;
+    stroke: #606060 !important;
+}
+
+/* Light mode styles for profile button */
+body:not(.dark-mode) .profile-button-revive svg {
+    fill: url(#linear-gradient) !important;
+    stroke: #d4d4d4 !important;
+}
+
+/* Quick Revive Main Button Styles */
+#quick-revive-button {
+    background-color: #D32F2F !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    -webkit-text-stroke: 0.2px #FFFFFF !important;
+    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #D32F2F !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+#quick-revive-button:hover {
+    background-color: #B71C1C !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #B71C1C, 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+#quick-revive-button:active {
+    transform: scale(0.98) !important;
+    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #B71C1C !important;
+}
+
+/* Desktop specific styles */
+@media (min-width: 769px) {
+    #quick-revive-button {
+        margin: 10px auto !important;
+        padding: 2.5px 15px !important;
+        display: block !important;
+        font-size: 14px !important;
+        min-width: 120px !important;
+    }
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    #quick-revive-button {
+        margin: 6.5px 0px !important;
+        padding: 3px 10px !important;
+        display: inline-block !important;
+        font-size: 12px !important;
+        position: absolute !important;
+        z-index: 9999 !important;
+        min-width: 60px !important;
+    }
+}
+
+/* Animation for button pulse effect */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #D32F2F;
+    }
+    50% {
+        box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 6px #D32F2F, 0 0 20px rgba(211, 47, 47, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #D32F2F;
+    }
+}
+
+/* Add pulse animation when user is in hospital */
+.user-in-hospital #quick-revive-button {
+    animation: pulse 2s infinite;
+}
+
+/* Loading state for buttons */
+.profile-button-revive.loading svg,
+#quick-revive-button.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+#quick-revive-button.loading::after {
+    content: '...';
+    display: inline-block;
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60%, 100% {
+        content: '...';
+    }
+}
+
+/* Success state */
+.profile-button-revive.success svg {
+    fill: #4CAF50 !important;
+}
+
+#quick-revive-button.success {
+    background-color: #4CAF50 !important;
+    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #4CAF50 !important;
+}
+
+/* Error state */
+.profile-button-revive.error svg {
+    fill: #f44336 !important;
+}
+
+#quick-revive-button.error {
+    background-color: #f44336 !important;
+    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #f44336 !important;
+}
+
+/* Tooltip styles */
+.revive-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10000;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.revive-tooltip.show {
+    opacity: 1;
+}
+
+/* Dark mode specific adjustments */
+body.dark-mode #quick-revive-button,
+.dark-mode #quick-revive-button {
+    box-shadow: 0 0 0 2px #333333, 0 0 0 4px #D32F2F !important;
+}
+
+body.dark-mode #quick-revive-button:hover,
+.dark-mode #quick-revive-button:hover {
+    box-shadow: 0 0 0 2px #333333, 0 0 0 4px #B71C1C, 0 4px 8px rgba(0,0,0,0.4) !important;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+    #quick-revive-button {
+        font-size: 11px !important;
+        padding: 2px 8px !important;
+        min-width: 50px !important;
+    }
+    
+    .profile-button-revive svg {
+        width: 32px !important;
+        height: 32px !important;
+        margin: 3px !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #quick-revive-button {
+        border: 2px solid white !important;
+    }
+    
+    .profile-button-revive svg {
+        stroke-width: 2 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    #quick-revive-button,
+    .profile-button-revive,
+    .profile-button-revive svg {
+        transition: none !important;
+        animation: none !important;
+    }
+}
